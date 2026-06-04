@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soojeong Bang | Network AI Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #F7F5F0;
+      --bg2:       #EDEAE3;
+      --ink:       #1A1916;
+      --ink2:      #4A4740;
+      --ink3:      #8A8680;
+      --accent:    #1B4F8A;
+      --accent2:   #2E6FBF;
+      --rule:      #CCC9C0;
+      --tag-bg:    #E2E8F4;
+      --tag-ink:   #1B4F8A;
+      --serif:     "DM Serif Display", Georgia, serif;
+      --sans:      "DM Sans", system-ui, sans-serif;
+      --max:       900px;
+      --side:      260px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15.5px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--ink);
+      color: #fff;
+      padding: 64px 40px 52px;
+    }
+    .header-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: end;
+    }
+    .header-name {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      color: #fff;
+    }
+    .header-name em {
+      font-style: italic;
+      color: #A8C4E0;
+    }
+    .header-sub {
+      margin-top: 12px;
+      font-size: 0.88rem;
+      color: #A0A8B4;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .header-contact {
+      text-align: right;
+      font-size: 0.82rem;
+      color: #A0A8B4;
+      line-height: 2;
+    }
+    .header-contact a { color: #7BAED4; text-decoration: none; }
+    .header-contact a:hover { color: #fff; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--accent);
+      padding: 0 40px;
+    }
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      gap: 0;
+    }
+    nav a {
+      display: inline-block;
+      color: #C5D9F0;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 14px 18px;
+      transition: color 0.2s, background 0.2s;
+    }
+    nav a:hover { color: #fff; background: rgba(255,255,255,0.1); }
+
+    /* ── LAYOUT ── */
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 56px 40px 80px;
+      display: grid;
+      grid-template-columns: var(--side) 1fr;
+      gap: 0 56px;
+    }
+
+    aside {
+      grid-column: 1;
+    }
+
+    .content-area {
+      grid-column: 2;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar-block {
+      margin-bottom: 40px;
+    }
+    .sidebar-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .sidebar-block p {
+      font-size: 0.85rem;
+      color: var(--ink2);
+      margin-bottom: 4px;
+    }
+    .sidebar-block a {
+      font-size: 0.85rem;
+      color: var(--accent2);
+      text-decoration: none;
+    }
+    .sidebar-block a:hover { text-decoration: underline; }
+
+    .tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--tag-ink);
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 3px 9px;
+      border-radius: 3px;
+      margin: 2px 2px 2px 0;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── SECTION ── */
+    section {
+      margin-bottom: 56px;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 0.5s ease forwards;
+    }
+    section:nth-child(1) { animation-delay: 0.05s; }
+    section:nth-child(2) { animation-delay: 0.12s; }
+    section:nth-child(3) { animation-delay: 0.19s; }
+    section:nth-child(4) { animation-delay: 0.26s; }
+    section:nth-child(5) { animation-delay: 0.33s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+      letter-spacing: -0.2px;
+    }
+
+    /* ── ABOUT ── */
+    .about-text p {
+      margin-bottom: 14px;
+      color: var(--ink2);
+      font-size: 0.95rem;
+    }
+    .about-text p:last-child { margin-bottom: 0; }
+
+    /* ── PUBLICATIONS ── */
+    .pub-list { list-style: none; }
+    .pub-item {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .pub-item:first-child { padding-top: 0; }
+    .pub-item:last-child { border-bottom: none; }
+
+    .pub-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 2px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    .badge-journal  { background: #D4E8FF; color: #0D4A8A; }
+    .badge-conf     { background: #D4F0E2; color: #0D6B3A; }
+    .badge-review   { background: #FFF0D4; color: #7A4800; }
+
+    .pub-title {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--ink);
+      display: inline;
+    }
+    .pub-authors {
+      font-size: 0.84rem;
+      color: var(--ink3);
+      margin-top: 3px;
+    }
+    .pub-authors strong { color: var(--ink2); }
+    .pub-venue {
+      font-size: 0.83rem;
+      color: var(--ink2);
+      font-style: italic;
+      margin-top: 2px;
+    }
+    .pub-doi {
+      font-size: 0.78rem;
+      color: var(--accent2);
+      margin-top: 3px;
+      text-decoration: none;
+    }
+    .pub-doi:hover { text-decoration: underline; }
+
+    /* ── RESEARCH INTERESTS ── */
+    .interest-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .interest-card {
+      background: var(--bg2);
+      border-left: 3px solid var(--accent);
+      padding: 14px 16px;
+      border-radius: 0 4px 4px 0;
+    }
+    .interest-card h4 {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+    .interest-card p {
+      font-size: 0.8rem;
+      color: var(--ink2);
+      line-height: 1.55;
+    }
+
+    /* ── GRANTS ── */
+    .grant-item {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .grant-item:first-child { padding-top: 0; }
+    .grant-item:last-child { border-bottom: none; }
+    .grant-role {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+    .grant-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .grant-meta {
+      font-size: 0.8rem;
+      color: var(--ink3);
+      margin-top: 3px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: #7A808C;
+      text-align: center;
+      padding: 28px 40px;
+      font-size: 0.78rem;
+    }
+    footer a { color: #7BAED4; text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      main {
+        grid-template-columns: 1fr;
+        padding: 36px 22px 60px;
+      }
+      aside { grid-column: 1; }
+      .content-area { grid-column: 1; }
+      .header-inner { grid-template-columns: 1fr; }
+      .header-contact { text-align: left; margin-top: 12px; }
+      nav { padding: 0 22px; }
+      .interest-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="header-name">Soojeong <em>Bang</em></div>
+      <div class="header-sub">Ph.D. Candidate &nbsp;·&nbsp; Network AI &nbsp;·&nbsp; Ewha Womans University</div>
+    </div>
+    <div class="header-contact">
+      <div>Seoul, Republic of Korea</div>
+      <div><a href="mailto:sujeong98of@naver.com">sujeong98of@naver.com</a></div>
+      <div><a href="mailto:tnwjd7732@gmail.com">tnwjd7732@gmail.com</a></div>
+      <div><a href="https://github.com/tnwjd7732" target="_blank">GitHub</a></div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#grants">Grants</a>
+    <a href="#teaching">Teaching</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+
+  <!-- SIDEBAR -->
+  <aside>
+    <div class="sidebar-block">
+      <div class="sidebar-label">Education</div>
+      <p><strong>Ph.D.</strong> Computer Science Engineering</p>
+      <p>Ewha Womans University</p>
+      <p style="color:var(--ink3); font-size:0.8rem;">Sep. 2021 – Feb. 2027 (expected)</p>
+      <p style="margin-top:8px; font-size:0.8rem; color:var(--ink3);">Advisor: Prof. Meejeong Lee</p>
+      <br>
+      <p><strong>B.S.</strong> Computer Engineering</p>
+      <p>Ewha Womans University</p>
+      <p style="color:var(--ink3); font-size:0.8rem;">Mar. 2017 – Aug. 2021</p>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-label">Keywords</div>
+      <span class="tag">Network AI</span>
+      <span class="tag">Deep RL</span>
+      <span class="tag">MEC</span>
+      <span class="tag">Task Offloading</span>
+      <span class="tag">Vehicular Networks</span>
+      <span class="tag">V2X</span>
+      <span class="tag">Multi-RAT</span>
+      <span class="tag">Semantic Comm.</span>
+      <span class="tag">Token Comm.</span>
+      <span class="tag">Resource Optimization</span>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-label">Academic Service</div>
+      <p>Reviewer,</p>
+      <p><em>IEEE Open Journal of<br>Vehicular Technology</em></p>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-label">Links</div>
+      <p><a href="https://github.com/tnwjd7732" target="_blank">GitHub</a></p>
+      <p><a href="https://scholar.google.com/citations?user=JRZHY6QAAAAJ&hl=ko" target="_blank">Google Scholar</a></p>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="content-area">
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-title">About</div>
+      <div class="about-text">
+        <p>
+          I am a Ph.D. candidate in Computer Engineering at Ewha Womans University, advised by Prof. Meejeong Lee.
+          My research develops learning-based optimization frameworks—particularly deep reinforcement learning
+          and topology-aware neural decision models—for communication-computation co-optimization in
+          vehicular, edge, and next-generation wireless systems.
+        </p>
+        <p>
+          Core problems I address include task offloading under mobility and dynamic resource states,
+          load-aware edge-cloud orchestration, and AI-driven wireless access control for heterogeneous networks.
+          Expanding research directions include multi-RAT and heterogeneous network optimization,
+          token communication, and semantic communication for next-generation wireless systems.
+        </p>
+        <p>
+          I am currently a Principal Investigator on a National Research Foundation of Korea (NRF)
+          doctoral grant focused on RL-based resource optimization for vehicular computation offloading systems.
+          I expect to complete my Ph.D. in February 2027 and am actively seeking postdoctoral opportunities.
+        </p>
+      </div>
+    </section>
+
+    <!-- RESEARCH INTERESTS -->
+    <section id="research">
+      <div class="section-title">Research Interests</div>
+      <div class="interest-grid">
+        <div class="interest-card">
+          <h4>Vehicular Edge Intelligence</h4>
+          <p>Robust offloading and cooperation under dynamic topology and regional congestion in vehicular edge-cloud systems.</p>
+        </div>
+        <div class="interest-card">
+          <h4>DRL-Based Resource Optimization</h4>
+          <p>Learning-based frameworks for communication-computation co-optimization: scheduling, offloading, and load balancing.</p>
+        </div>
+        <div class="interest-card">
+          <h4>Multi-RAT &amp; Heterogeneous Networks</h4>
+          <p>AI-driven wireless access control and resource management across heterogeneous radio access technologies.</p>
+        </div>
+        <div class="interest-card">
+          <h4>Semantic &amp; Token Communication</h4>
+          <p>Goal-oriented and task-relevant communication paradigms for efficient information transmission in next-generation systems.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications">
+      <div class="section-title">Publications</div>
+      <p style="font-size:0.8rem; color:var(--ink3); margin-bottom:16px; font-style:italic;">All listed publications are first-author publications.</p>
+      <ul class="pub-list">
+
+        <li class="pub-item">
+          <span class="pub-badge badge-review">Under Review</span>
+          <span class="pub-title">Decentralized Dynamic Cooperation and GNN-Embedded DRL for Energy-Aware Vehicular Edge Offloading</span>
+          <div class="pub-authors"><strong>S. Bang</strong> and M. Lee</div>
+          <div class="pub-venue">IEEE Transactions on Vehicular Technology (TVT)</div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-badge badge-journal">Journal</span>
+          <span class="pub-title">Revenue-Aware Vehicular Edge-Cloud Offloading via Two-Stage DRL and Dynamic Server Clustering</span>
+          <div class="pub-authors"><strong>S. Bang</strong> and M. Lee</div>
+          <div class="pub-venue">IEEE Open Journal of Vehicular Technology, pp. 1–16, 2026</div>
+          <a class="pub-doi" href="https://doi.org/10.1109/OJVT.2026.3682736" target="_blank">DOI: 10.1109/OJVT.2026.3682736</a>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-badge badge-conf">Conference</span>
+          <span class="pub-title">LARA-PPO: A Joint Optimization Framework for Success-Energy Trade-off in Vehicular Edge Task Offloading</span>
+          <div class="pub-authors"><strong>S. Bang</strong> and M. Lee</div>
+          <div class="pub-venue">IEEE International Conference on Communications (ICC), 2026 &nbsp;·&nbsp; <strong>Oral Presentation</strong></div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-badge badge-conf">Conference</span>
+          <span class="pub-title">ReLoad: Revenue and Load Balancing Aware DRL-Based Task Offloading Framework for Vehicular Cloud-Edge Networks</span>
+          <div class="pub-authors"><strong>S. Bang</strong> and M. Lee</div>
+          <div class="pub-venue">IEEE Global Communications Conference (GLOBECOM), 2025, pp. 1147–1153</div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-badge badge-journal">Journal</span>
+          <span class="pub-title">A Scalable VRU Protection System Based on Edge Servers</span>
+          <div class="pub-authors"><strong>S. Bang</strong>, M. Lee, and S. Ahn</div>
+          <div class="pub-venue">IEEE Access, vol. 11, pp. 97590–97604, 2023</div>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- GRANTS -->
+    <section id="grants">
+      <div class="section-title">Research Grants</div>
+
+      <div class="grant-item">
+        <div class="grant-role">Principal Investigator</div>
+        <div class="grant-title">RL-Based Communication and Computing Resource Optimization Technology for Vehicle Computation Offloading Systems</div>
+        <div class="grant-meta">NRF Doctoral Student Research Grant &nbsp;·&nbsp; KRW 50,000,000 &nbsp;·&nbsp; Sep. 2024 – Aug. 2026</div>
+      </div>
+
+      <div class="grant-item">
+        <div class="grant-role">External Researcher</div>
+        <div class="grant-title">RSU-MEC/Fog Server-Based Computation Offloading Technology Using V2X Communications</div>
+        <div class="grant-meta">NRF Mid-Career Research Program &nbsp;·&nbsp; KRW 95,500,000 &nbsp;·&nbsp; Sep. 2022 – Feb. 2024</div>
+      </div>
+    </section>
+
+    <!-- TEACHING -->
+    <section id="teaching">
+      <div class="section-title">Teaching</div>
+
+      <div class="grant-item">
+        <div class="grant-role">Teaching Assistant &nbsp;·&nbsp; Ewha Womans University</div>
+        <div class="grant-title">26 assignments across 10 semesters in 9 undergraduate courses</div>
+        <div class="grant-meta">Programming, Discrete Mathematics, Computer Networks, Data Structures, Databases, Automata, AI &nbsp;·&nbsp; Fall 2021 – Spring 2026</div>
+      </div>
+
+      <div class="grant-item">
+        <div class="grant-role">AI &amp; C Language Instructor &nbsp;·&nbsp; Ilsan Smart Learning Robot Academy</div>
+        <div class="grant-title">Weekly instruction to high school students in programming fundamentals and AI</div>
+        <div class="grant-meta">Computer vision, LLMs, reinforcement learning, unsupervised learning &nbsp;·&nbsp; Feb. 2019 – Present</div>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <p style="font-size:0.82rem; font-weight:600; color:var(--ink3); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Courses Prepared to Teach</p>
+        <span class="tag">Computer Programming</span>
+        <span class="tag">Computer Networks</span>
+        <span class="tag">Discrete Mathematics</span>
+        <span class="tag">Introduction to AI</span>
+        <span class="tag">Deep Reinforcement Learning</span>
+        <span class="tag">Wireless Communications</span>
+        <span class="tag">Edge Computing</span>
+        <span class="tag">Vehicular Networks</span>
+        <span class="tag">AI for Communication Networks</span>
+      </div>
+    </section>
+
+  </div><!-- /content-area -->
+</main>
+
+<footer>
+  <p>Soojeong Bang &nbsp;·&nbsp; Ph.D. Candidate, Ewha Womans University &nbsp;·&nbsp;
+     <a href="mailto:sujeong98of@naver.com">sujeong98of@naver.com</a>
+  </p>
+  <p style="margin-top:6px;">Last updated: June 2026</p>
+</footer>
+
+</body>
+</html>
